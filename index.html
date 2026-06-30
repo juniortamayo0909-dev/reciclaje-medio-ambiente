@@ -20,6 +20,17 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animación de fondo sutil */
+        @keyframes bgPulse {
+            0% { background-color: #f2faf2; }
+            50% { background-color: #e8f5e8; }
+            100% { background-color: #f2faf2; }
+        }
+        body {
+            animation: bgPulse 12s ease-in-out infinite;
         }
 
         .wrapper {
@@ -29,15 +40,74 @@
             flex: 1;
         }
 
+        /* ===== ANIMACIONES ===== */
+        @keyframes fadeSlideUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        @keyframes shine {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        @keyframes rotateLeaf {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(8deg) scale(1.05); }
+            100% { transform: rotate(0deg) scale(1); }
+        }
+        @keyframes borderGlow {
+            0% { box-shadow: 0 0 0 0 rgba(59, 158, 90, 0.3); }
+            50% { box-shadow: 0 0 20px 8px rgba(59, 158, 90, 0.1); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 158, 90, 0.3); }
+        }
+        @keyframes slideInLeft {
+            0% { opacity: 0; transform: translateX(-40px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRight {
+            0% { opacity: 0; transform: translateX(40px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Aplicar animaciones a secciones */
+        section {
+            background: white;
+            border-radius: 32px;
+            padding: 32px 34px;
+            margin-bottom: 36px;
+            box-shadow: 0 6px 20px rgba(0, 30, 0, 0.05);
+            border: 1px solid #ddeede;
+            animation: fadeSlideUp 0.8s ease forwards;
+            opacity: 0;
+            animation-delay: calc(var(--order, 0) * 0.15s);
+            transition: transform 0.3s ease, box-shadow 0.4s ease;
+        }
+        section:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(0, 40, 0, 0.08);
+        }
+
+        section:nth-of-type(1) { --order: 1; }
+        section:nth-of-type(2) { --order: 2; }
+        section:nth-of-type(3) { --order: 3; }
+        section:nth-of-type(4) { --order: 4; }
+
         /* encabezado con imagen 600x400 */
         .hero {
             margin: 24px 0 16px;
             border-radius: 28px;
             overflow: hidden;
             box-shadow: 0 16px 40px rgba(0, 40, 0, 0.15);
-            background: #c6dfc6;
             line-height: 0;
-            transition: 0.3s;
+            animation: fadeSlideUp 0.9s ease forwards, borderGlow 4s ease-in-out infinite 1s;
+            transition: transform 0.5s ease;
+        }
+        .hero:hover {
+            transform: scale(1.005);
         }
 
         .hero img {
@@ -47,6 +117,10 @@
             object-fit: cover;
             display: block;
             background: #b0d0b0;
+            transition: transform 0.6s ease;
+        }
+        .hero:hover img {
+            transform: scale(1.02);
         }
 
         /* menú */
@@ -61,6 +135,13 @@
             justify-content: center;
             gap: 6px 24px;
             border: 1px solid #c8e0c8;
+            animation: fadeSlideUp 0.7s ease forwards;
+            opacity: 0;
+            animation-delay: 0.2s;
+            transition: box-shadow 0.3s ease;
+        }
+        nav:hover {
+            box-shadow: 0 8px 28px rgba(0, 40, 0, 0.1);
         }
 
         nav a {
@@ -69,26 +150,27 @@
             color: #1e5a2e;
             padding: 6px 2px;
             border-bottom: 3px solid transparent;
-            transition: 0.2s;
+            transition: all 0.3s ease;
             font-size: 1.08rem;
             letter-spacing: 0.3px;
+            position: relative;
         }
-
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #3b9e5a;
+            transition: width 0.4s ease;
+        }
+        nav a:hover::after {
+            width: 100%;
+        }
         nav a:hover {
-            border-bottom-color: #2b7a3b;
             color: #0a3a18;
-            transform: translateY(-1px);
-        }
-
-        /* secciones */
-        section {
-            background: white;
-            border-radius: 32px;
-            padding: 32px 34px;
-            margin-bottom: 36px;
-            box-shadow: 0 6px 20px rgba(0, 30, 0, 0.05);
-            border: 1px solid #ddeede;
-            transition: 0.2s;
+            transform: translateY(-2px);
         }
 
         h2 {
@@ -99,6 +181,13 @@
             padding-left: 22px;
             margin-bottom: 22px;
             letter-spacing: -0.4px;
+            position: relative;
+        }
+        h2::before {
+            content: '🌿';
+            margin-right: 12px;
+            display: inline-block;
+            animation: rotateLeaf 4s ease-in-out infinite;
         }
 
         h3 {
@@ -122,9 +211,25 @@
             margin-bottom: 12px;
             list-style-type: '🌱 ';
             padding-left: 8px;
+            animation: slideInLeft 0.6s ease forwards;
+            opacity: 0;
+            animation-delay: calc(var(--i, 0) * 0.08s + 0.3s);
+            transition: transform 0.3s ease;
+        }
+        ul li:hover {
+            transform: translateX(6px);
         }
 
-        /* tarjetas para video (audio oculto) */
+        ul li:nth-child(1) { --i: 1; }
+        ul li:nth-child(2) { --i: 2; }
+        ul li:nth-child(3) { --i: 3; }
+        ul li:nth-child(4) { --i: 4; }
+        ul li:nth-child(5) { --i: 5; }
+        ul li:nth-child(6) { --i: 6; }
+        ul li:nth-child(7) { --i: 7; }
+        ul li:nth-child(8) { --i: 8; }
+
+        /* tarjetas para video */
         .media-grid {
             display: flex;
             flex-wrap: wrap;
@@ -138,7 +243,18 @@
             border-radius: 24px;
             padding: 18px 18px 22px;
             border: 1px solid #cde0cd;
+            animation: fadeSlideUp 0.7s ease forwards;
+            opacity: 0;
+            animation-delay: calc(var(--order-media, 0) * 0.2s + 0.4s);
+            transition: all 0.4s ease;
         }
+        .media-item:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 12px 30px rgba(0, 40, 0, 0.08);
+            border-color: #8bc34a;
+        }
+        .media-item:nth-child(1) { --order-media: 1; }
+        .media-item:nth-child(2) { --order-media: 2; }
 
         .media-item h4 {
             font-size: 1.25rem;
@@ -158,14 +274,18 @@
             outline: none;
             aspect-ratio: 16 / 9;
             box-shadow: 0 4px 12px rgba(0,20,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.4s ease;
+        }
+        video:hover {
+            transform: scale(1.01);
+            box-shadow: 0 8px 25px rgba(0, 40, 0, 0.15);
         }
 
-        /* audio oculto (no se muestra) */
+        /* audio oculto */
         .audio-hidden {
             display: none;
         }
 
-        /* texto informativo del audio (reemplazo visual) */
         .audio-placeholder {
             background: #e6f3e6;
             border-radius: 20px;
@@ -175,24 +295,43 @@
             align-items: center;
             gap: 16px;
             flex-wrap: wrap;
+            transition: all 0.3s ease;
+            animation: borderGlow 3s ease-in-out infinite;
         }
-
+        .audio-placeholder:hover {
+            transform: scale(1.02);
+            border-color: #3b9e5a;
+        }
         .audio-placeholder span {
             font-size: 2.2rem;
+            animation: float 3s ease-in-out infinite;
         }
-
         .audio-placeholder p {
             margin: 0;
             font-weight: 500;
             color: #1a4a2a;
         }
-
         .audio-placeholder small {
             color: #2f6a3f;
             background: white;
             padding: 4px 16px;
             border-radius: 40px;
             font-size: 0.9rem;
+        }
+        .audio-placeholder a {
+            background: #3b9e5a;
+            color: white;
+            padding: 6px 18px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        .audio-placeholder a:hover {
+            background: #2a7a42;
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(59, 158, 90, 0.3);
         }
 
         /* integrantes */
@@ -211,8 +350,38 @@
             padding: 8px 28px 8px 22px;
             border-radius: 40px;
             border: 1px solid #b9dbb9;
-            letter-spacing: 0.3px;
             box-shadow: 0 2px 6px rgba(0,30,0,0.02);
+            transition: all 0.3s ease;
+            animation: fadeSlideUp 0.6s ease forwards;
+            opacity: 0;
+            animation-delay: calc(var(--order-int, 0) * 0.15s + 0.5s);
+        }
+        .integrantes-list span:nth-child(1) { --order-int: 1; }
+        .integrantes-list span:nth-child(2) { --order-int: 2; }
+        .integrantes-list span:nth-child(3) { --order-int: 3; }
+
+        .integrantes-list span:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 6px 20px rgba(59, 158, 90, 0.15);
+            border-color: #3b9e5a;
+            background: #e0f0e0;
+        }
+
+        .badge-eco {
+            margin-top: 22px;
+            font-style: italic;
+            color: #306b40;
+            background: #eff9ef;
+            padding: 10px 24px;
+            border-radius: 40px;
+            display: inline-block;
+            border: 1px solid #b9dbb9;
+            animation: float 4s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+        .badge-eco:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(59, 158, 90, 0.15);
         }
 
         /* pie de página */
@@ -224,16 +393,26 @@
             border-radius: 40px 40px 0 0;
             margin-top: 24px;
             border-top: 2px solid #b2d3b2;
+            animation: fadeSlideUp 0.8s ease forwards;
+            opacity: 0;
+            animation-delay: 0.6s;
+            transition: all 0.3s ease;
         }
-
+        footer:hover {
+            background: #d4e8d4;
+        }
         footer p {
             margin-bottom: 6px;
             font-size: 1.05rem;
         }
-
         footer small {
             opacity: 0.8;
             font-size: 0.95rem;
+        }
+
+        /* scroll suave */
+        html {
+            scroll-behavior: smooth;
         }
 
         /* responsive */
@@ -268,8 +447,7 @@
 <!-- 
     Inspiración: https://www.nationalgeographic.com 
     Estilo moderno, naturaleza, conciencia ecológica.
-    Se ha ampliado la información, se ha ocultado el audio (no se ve) 
-    y se ha añadido una sección con datos y estadísticas.
+    Se han añadido múltiples animaciones: hover, entradas, flotantes, pulsos, etc.
 -->
 
 <div class="wrapper">
@@ -297,7 +475,7 @@
 
     <!-- SECCIÓN: Importancia del reciclaje (ampliada) -->
     <section id="importancia">
-        <h2>♻️ Importancia del reciclaje</h2>
+        <h2>Importancia del reciclaje</h2>
         <p>
             El reciclaje es uno de los pilares fundamentales para la sostenibilidad del planeta. 
             Cada año, más de <strong>2.000 millones de toneladas</strong> de residuos se generan a nivel mundial, 
@@ -308,27 +486,27 @@
         </p>
         <p>
             <strong>Beneficios clave del reciclaje:</strong>
-            <ul>
-                <li><strong>Ahorro de energía:</strong> reciclar aluminio ahorra un 95% de la energía necesaria para producirlo desde la bauxita.</li>
-                <li><strong>Reducción de emisiones:</strong> cada tonelada de papel reciclado evita la emisión de 1,5 toneladas de CO₂.</li>
-                <li><strong>Conservación de agua:</strong> reciclar plástico reduce el consumo de agua en un 70% comparado con la producción virgen.</li>
-                <li><strong>Protección de la biodiversidad:</strong> menos minería y tala de árboles significa hábitats más sanos para la fauna y flora.</li>
-            </ul>
         </p>
+        <ul>
+            <li><strong>Ahorro de energía:</strong> reciclar aluminio ahorra un 95% de la energía necesaria para producirlo desde la bauxita.</li>
+            <li><strong>Reducción de emisiones:</strong> cada tonelada de papel reciclado evita la emisión de 1,5 toneladas de CO₂.</li>
+            <li><strong>Conservación de agua:</strong> reciclar plástico reduce el consumo de agua en un 70% comparado con la producción virgen.</li>
+            <li><strong>Protección de la biodiversidad:</strong> menos minería y tala de árboles significa hábitats más sanos para la fauna y flora.</li>
+        </ul>
         <p>
             Según datos de <em>National Geographic</em>, solo el <strong>9%</strong> de todo el plástico producido desde 1950 ha sido reciclado. 
             El resto se ha incinerado, depositado en vertederos o ha terminado en el entorno natural. 
             Este dato nos muestra que <strong>reciclar no es suficiente</strong>: debemos combinar la reducción, 
             la reutilización y el rediseño de productos para lograr un cambio real.
         </p>
-        <p style="background: #e9f5e9; padding: 14px 22px; border-radius: 40px; border-left: 6px solid #3b9e5a;">
+        <p style="background: #e9f5e9; padding: 14px 22px; border-radius: 40px; border-left: 6px solid #3b9e5a; transition: all 0.3s ease;">
             🌍 <strong>“El reciclaje es la última opción después de reducir y reutilizar”</strong> — National Geographic.
         </p>
     </section>
 
     <!-- SECCIÓN: Cómo reciclar + consejos (ampliada) -->
     <section id="como-reciclar">
-        <h2>🌿 Consejos para cuidar el medio ambiente</h2>
+        <h2>Consejos para cuidar el medio ambiente</h2>
         <p>
             Pequeñas acciones cotidianas pueden marcar una gran diferencia. Aquí tienes una 
             guía práctica para incorporar hábitos sostenibles en tu día a día:
@@ -343,14 +521,14 @@
             <li><strong>Repara en lugar de desechar:</strong> da una segunda vida a la ropa, muebles y electrodomésticos.</li>
             <li><strong>Educa y comparte:</strong> habla con amigos y familiares sobre la importancia de reciclar y cuidar el entorno.</li>
         </ul>
-        <p style="margin-top: 20px; background: #e3f0e3; padding: 14px 24px; border-radius: 40px; display: inline-block;">
+        <p style="margin-top: 20px; background: #e3f0e3; padding: 14px 24px; border-radius: 40px; display: inline-block; animation: float 5s ease-in-out infinite; transition: all 0.3s ease;">
             🌎 <strong>“No heredamos la Tierra de nuestros antepasados, la tomamos prestada de nuestros hijos”</strong>
         </p>
     </section>
 
     <!-- VIDEO y AUDIO (audio oculto) -->
     <section style="padding-bottom: 24px;">
-        <h2>🎬 Multimedia educativa</h2>
+        <h2>Multimedia educativa</h2>
         <div class="media-grid">
             <!-- Video -->
             <div class="media-item" id="video">
@@ -363,7 +541,7 @@
                 <p style="margin-top: 12px; font-size: 0.95rem; color: #2b5e38;">
                     ⏯️ Haz clic en play para ver el documental (archivo: video.mp4)
                 </p>
-                <p style="font-size: 0.9rem; color: #3d6b4a; background: #e8f3e8; padding: 6px 14px; border-radius: 30px; margin-top: 6px;">
+                <p style="font-size: 0.9rem; color: #3d6b4a; background: #e8f3e8; padding: 6px 14px; border-radius: 30px; margin-top: 6px; display: inline-block;">
                     📽️ Duración aproximada: 4 min · Producción: Planeta Vivo
                 </p>
             </div>
@@ -385,14 +563,14 @@
                         <p><strong>Audio disponible</strong> · “Voces por el planeta”</p>
                         <small>🎵 Archivo: audio.mp3 · 2:30 min</small>
                     </div>
-                    <a href="audio.mp3" download style="background: #3b9e5a; color: white; padding: 6px 18px; border-radius: 40px; text-decoration: none; font-weight: 500; font-size: 0.9rem;">
+                    <a href="audio.mp3" download>
                         ⬇️ Descargar
                     </a>
                 </div>
-                <p style="margin-top: 14px; font-size: 0.95rem; color: #2b5e38; background: #f0f8f0; padding: 8px 16px; border-radius: 30px;">
+                <p style="margin-top: 14px; font-size: 0.95rem; color: #2b5e38; background: #f0f8f0; padding: 8px 16px; border-radius: 30px; display: inline-block;">
                     🔇 El reproductor de audio está oculto, pero puedes descargar el archivo.
                 </p>
-                <p style="font-size: 0.9rem; color: #3d6b4a;">
+                <p style="font-size: 0.9rem; color: #3d6b4a; margin-top: 8px;">
                     Contenido: mensaje inspirador sobre la urgencia de actuar frente al cambio climático.
                 </p>
             </div>
@@ -401,16 +579,16 @@
 
     <!-- SECCIÓN: Integrantes -->
     <section id="integrantes">
-        <h2>👥 Integrantes del proyecto</h2>
+        <h2>Integrantes del proyecto</h2>
         <div class="integrantes-list">
             <span>🌱 Junior Tamayo</span>
             <span>🌿 Nombre Integrante 2</span>
             <span>🍃 Nombre Integrante 3</span>
         </div>
-        <p style="margin-top: 22px; font-style: italic; color: #306b40; background: #eff9ef; padding: 10px 24px; border-radius: 40px; display: inline-block; border: 1px solid #b9dbb9;">
+        <div class="badge-eco">
             ✦ Comprometidos con la educación ambiental y el reciclaje ✦
-        </p>
-        <p style="margin-top: 14px; font-size: 0.98rem;">
+        </div>
+        <p style="margin-top: 18px; font-size: 0.98rem;">
             Este sitio ha sido desarrollado como parte de una iniciativa para promover la conciencia ecológica, 
             inspirado en los reportajes y la línea editorial de <strong>National Geographic</strong>.
         </p>

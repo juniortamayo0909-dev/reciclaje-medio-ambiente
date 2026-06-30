@@ -14,9 +14,9 @@
 
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f5fbf5;
-            color: #1e3e2b;
-            line-height: 1.6;
+            background-color: #f2faf2;
+            color: #1a3a24;
+            line-height: 1.7;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -25,18 +25,19 @@
         .wrapper {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
             flex: 1;
         }
 
         /* encabezado con imagen 600x400 */
         .hero {
-            margin: 20px 0 10px;
-            border-radius: 24px;
+            margin: 24px 0 16px;
+            border-radius: 28px;
             overflow: hidden;
-            box-shadow: 0 12px 30px rgba(0, 40, 0, 0.12);
-            background: #d0e8d0;
+            box-shadow: 0 16px 40px rgba(0, 40, 0, 0.15);
+            background: #c6dfc6;
             line-height: 0;
+            transition: 0.3s;
         }
 
         .hero img {
@@ -45,21 +46,20 @@
             aspect-ratio: 600 / 400;
             object-fit: cover;
             display: block;
-            background: #b9dbb9;
-            color: #1a4a1a;
+            background: #b0d0b0;
         }
 
         /* menú */
         nav {
             background: white;
             border-radius: 60px;
-            padding: 12px 24px;
-            margin: 20px 0 30px;
-            box-shadow: 0 4px 14px rgba(0, 30, 0, 0.06);
+            padding: 14px 28px;
+            margin: 20px 0 32px;
+            box-shadow: 0 6px 18px rgba(0, 30, 0, 0.06);
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 8px 20px;
+            gap: 6px 24px;
             border: 1px solid #c8e0c8;
         }
 
@@ -67,72 +67,73 @@
             text-decoration: none;
             font-weight: 600;
             color: #1e5a2e;
-            padding: 6px 6px;
+            padding: 6px 2px;
             border-bottom: 3px solid transparent;
             transition: 0.2s;
-            font-size: 1.05rem;
+            font-size: 1.08rem;
             letter-spacing: 0.3px;
         }
 
         nav a:hover {
             border-bottom-color: #2b7a3b;
-            color: #0e3a1a;
+            color: #0a3a18;
+            transform: translateY(-1px);
         }
 
         /* secciones */
         section {
             background: white;
             border-radius: 32px;
-            padding: 28px 30px;
-            margin-bottom: 32px;
-            box-shadow: 0 6px 18px rgba(0, 30, 0, 0.04);
+            padding: 32px 34px;
+            margin-bottom: 36px;
+            box-shadow: 0 6px 20px rgba(0, 30, 0, 0.05);
             border: 1px solid #ddeede;
             transition: 0.2s;
         }
 
         h2 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 600;
-            color: #1b4d28;
-            border-left: 7px solid #3b9e5a;
-            padding-left: 18px;
-            margin-bottom: 18px;
-            letter-spacing: -0.3px;
+            color: #174d26;
+            border-left: 8px solid #3b9e5a;
+            padding-left: 22px;
+            margin-bottom: 22px;
+            letter-spacing: -0.4px;
         }
 
         h3 {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 500;
             color: #1f5a2f;
-            margin: 18px 0 10px;
+            margin: 24px 0 12px;
         }
 
         p {
-            margin-bottom: 16px;
+            margin-bottom: 18px;
             color: #1e3a28;
         }
 
         ul {
             padding-left: 28px;
-            margin: 16px 0 8px;
+            margin: 16px 0 12px;
         }
 
         ul li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             list-style-type: '🌱 ';
-            padding-left: 6px;
+            padding-left: 8px;
         }
 
-        /* tarjetas para video y audio */
+        /* tarjetas para video (audio oculto) */
         .media-grid {
             display: flex;
             flex-wrap: wrap;
             gap: 30px;
-            margin-top: 10px;
+            margin-top: 12px;
         }
 
         .media-item {
-            flex: 1 1 280px;
+            flex: 1 1 300px;
             background: #f2faf2;
             border-radius: 24px;
             padding: 18px 18px 22px;
@@ -140,7 +141,7 @@
         }
 
         .media-item h4 {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             margin-bottom: 14px;
             font-weight: 500;
             color: #1b542b;
@@ -149,22 +150,49 @@
             gap: 10px;
         }
 
-        video, audio {
+        video {
             width: 100%;
             border-radius: 20px;
             background: #d4e8d4;
             display: block;
             outline: none;
-        }
-
-        video {
             aspect-ratio: 16 / 9;
-            background: #bdd8bd;
+            box-shadow: 0 4px 12px rgba(0,20,0,0.08);
         }
 
-        audio {
-            height: 54px;
-            background: #e0f0e0;
+        /* audio oculto (no se muestra) */
+        .audio-hidden {
+            display: none;
+        }
+
+        /* texto informativo del audio (reemplazo visual) */
+        .audio-placeholder {
+            background: #e6f3e6;
+            border-radius: 20px;
+            padding: 18px 22px;
+            border: 1px solid #b9dbb9;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .audio-placeholder span {
+            font-size: 2.2rem;
+        }
+
+        .audio-placeholder p {
+            margin: 0;
+            font-weight: 500;
+            color: #1a4a2a;
+        }
+
+        .audio-placeholder small {
+            color: #2f6a3f;
+            background: white;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 0.9rem;
         }
 
         /* integrantes */
@@ -172,18 +200,19 @@
             display: flex;
             flex-wrap: wrap;
             gap: 18px 38px;
-            margin: 12px 0 6px;
-            font-size: 1.15rem;
+            margin: 16px 0 8px;
+            font-size: 1.2rem;
             font-weight: 500;
-            color: #194d27;
+            color: #174d26;
         }
 
         .integrantes-list span {
             background: #e6f3e6;
-            padding: 6px 22px 6px 18px;
+            padding: 8px 28px 8px 22px;
             border-radius: 40px;
             border: 1px solid #b9dbb9;
             letter-spacing: 0.3px;
+            box-shadow: 0 2px 6px rgba(0,30,0,0.02);
         }
 
         /* pie de página */
@@ -191,12 +220,15 @@
             background: #dcecdc;
             color: #1a4525;
             text-align: center;
-            padding: 22px 20px;
+            padding: 26px 20px;
             border-radius: 40px 40px 0 0;
-            margin-top: 20px;
+            margin-top: 24px;
             border-top: 2px solid #b2d3b2;
-            font-weight: 400;
-            letter-spacing: 0.5px;
+        }
+
+        footer p {
+            margin-bottom: 6px;
+            font-size: 1.05rem;
         }
 
         footer small {
@@ -209,7 +241,7 @@
             nav {
                 border-radius: 30px;
                 padding: 12px 10px;
-                gap: 6px 12px;
+                gap: 4px 12px;
             }
             nav a {
                 font-size: 0.95rem;
@@ -218,10 +250,15 @@
                 border-radius: 18px;
             }
             section {
-                padding: 20px 16px;
+                padding: 22px 16px;
             }
             h2 {
-                font-size: 1.7rem;
+                font-size: 1.8rem;
+                padding-left: 14px;
+            }
+            .integrantes-list {
+                gap: 12px 20px;
+                font-size: 1rem;
             }
         }
     </style>
@@ -231,15 +268,16 @@
 <!-- 
     Inspiración: https://www.nationalgeographic.com 
     Estilo moderno, naturaleza, conciencia ecológica.
+    Se ha ampliado la información, se ha ocultado el audio (no se ve) 
+    y se ha añadido una sección con datos y estadísticas.
 -->
 
 <div class="wrapper">
 
-    <!-- Encabezado con imagen 600x400 -->
+    <!-- Encabezado con imagen 600x400 (temática reciclaje) -->
     <div class="hero">
-        <!-- imagen de ejemplo (temática reciclaje / naturaleza) -->
         <img 
-            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%232d6a3b'/%3E%3Ccircle cx='300' cy='180' r='80' fill='%233f8f4f'/%3E%3Ccircle cx='200' cy='270' r='50' fill='%2358a86a'/%3E%3Ccircle cx='400' cy='270' r='45' fill='%234a9b5c'/%3E%3Crect x='140' y='320' width='320' height='18' fill='%23b8d9b8' rx='9'/%3E%3Crect x='190' y='360' width='220' height='18' fill='%23a7cfa7' rx='9'/%3E%3Ctext x='300' y='210' font-family='Segoe UI, sans-serif' font-size='36' fill='%23f0fcf0' text-anchor='middle' font-weight='bold'%3E♻️ RECICLAJE%3C/text%3E%3C/svg%3E"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%232d6a3b'/%3E%3Ccircle cx='300' cy='160' r='80' fill='%233f8f4f'/%3E%3Ccircle cx='200' cy='270' r='50' fill='%2358a86a'/%3E%3Ccircle cx='400' cy='270' r='45' fill='%234a9b5c'/%3E%3Crect x='140' y='320' width='320' height='18' fill='%23b8d9b8' rx='9'/%3E%3Crect x='190' y='360' width='220' height='18' fill='%23a7cfa7' rx='9'/%3E%3Ctext x='300' y='200' font-family='Segoe UI, sans-serif' font-size='38' fill='%23f0fcf0' text-anchor='middle' font-weight='bold'%3E♻️ RECICLAJE%3C/text%3E%3Ctext x='300' y='250' font-family='Segoe UI, sans-serif' font-size='22' fill='%23e2f5e2' text-anchor='middle'%3ECUIDADO DEL PLANETA%3C/text%3E%3C/svg%3E"
             alt="Reciclaje y naturaleza – imagen inspiradora"
             width="600" 
             height="400"
@@ -257,72 +295,105 @@
         <a href="#integrantes">Integrantes</a>
     </nav>
 
-    <!-- SECCIÓN: Importancia del reciclaje -->
+    <!-- SECCIÓN: Importancia del reciclaje (ampliada) -->
     <section id="importancia">
         <h2>♻️ Importancia del reciclaje</h2>
         <p>
             El reciclaje es uno de los pilares fundamentales para la sostenibilidad del planeta. 
-            Cada año, millones de toneladas de residuos terminan en vertederos o en el océano, 
-            afectando gravemente la biodiversidad y el equilibrio climático. 
+            Cada año, más de <strong>2.000 millones de toneladas</strong> de residuos se generan a nivel mundial, 
+            y gran parte de ellos termina en vertederos, océanos o incineradoras, liberando gases 
+            de efecto invernadero y toxinas. La <strong>economía circular</strong> propone un modelo donde 
+            los materiales se mantienen en uso el mayor tiempo posible, reduciendo la extracción 
+            de recursos naturales y la contaminación.
         </p>
         <p>
-            Al reciclar, reducimos la extracción de materias primas, ahorramos energía 
-            y disminuimos la contaminación del aire y del agua. Pequeñas acciones, como 
-            separar correctamente los residuos, generan un impacto enorme cuando se suman 
-            a nivel global. <strong>“El futuro es verde”</strong> no es solo un eslogan, 
-            es una necesidad.
+            <strong>Beneficios clave del reciclaje:</strong>
+            <ul>
+                <li><strong>Ahorro de energía:</strong> reciclar aluminio ahorra un 95% de la energía necesaria para producirlo desde la bauxita.</li>
+                <li><strong>Reducción de emisiones:</strong> cada tonelada de papel reciclado evita la emisión de 1,5 toneladas de CO₂.</li>
+                <li><strong>Conservación de agua:</strong> reciclar plástico reduce el consumo de agua en un 70% comparado con la producción virgen.</li>
+                <li><strong>Protección de la biodiversidad:</strong> menos minería y tala de árboles significa hábitats más sanos para la fauna y flora.</li>
+            </ul>
         </p>
         <p>
-            National Geographic nos recuerda que cada elección cuenta: desde el envase 
-            que elegimos hasta la forma en que desechamos nuestros objetos. 
-            El reciclaje no es una opción, es una responsabilidad compartida.
+            Según datos de <em>National Geographic</em>, solo el <strong>9%</strong> de todo el plástico producido desde 1950 ha sido reciclado. 
+            El resto se ha incinerado, depositado en vertederos o ha terminado en el entorno natural. 
+            Este dato nos muestra que <strong>reciclar no es suficiente</strong>: debemos combinar la reducción, 
+            la reutilización y el rediseño de productos para lograr un cambio real.
+        </p>
+        <p style="background: #e9f5e9; padding: 14px 22px; border-radius: 40px; border-left: 6px solid #3b9e5a;">
+            🌍 <strong>“El reciclaje es la última opción después de reducir y reutilizar”</strong> — National Geographic.
         </p>
     </section>
 
-    <!-- SECCIÓN: Cómo reciclar + consejos -->
+    <!-- SECCIÓN: Cómo reciclar + consejos (ampliada) -->
     <section id="como-reciclar">
         <h2>🌿 Consejos para cuidar el medio ambiente</h2>
+        <p>
+            Pequeñas acciones cotidianas pueden marcar una gran diferencia. Aquí tienes una 
+            guía práctica para incorporar hábitos sostenibles en tu día a día:
+        </p>
         <ul>
-            <li><strong>Separa en casa:</strong> usa contenedores diferenciados para papel, vidrio, plástico y orgánico.</li>
-            <li><strong>Reduce el consumo de plásticos:</strong> opta por bolsas reutilizables y evita los envases de un solo uso.</li>
-            <li><strong>Recicla electrónicos:</strong> lleva dispositivos viejos a puntos de recogida especializados.</li>
-            <li><strong>Reutiliza el agua:</strong> recolecta agua de lluvia para regar plantas o limpiar.</li>
-            <li><strong>Apoya productos ecológicos:</strong> elige marcas con compromiso ambiental y certificaciones.</li>
-            <li><strong>Composta tus residuos orgánicos:</strong> transforma la materia orgánica en abono natural.</li>
-            <li><strong>Difunde el mensaje:</strong> comparte información y motiva a tu comunidad a reciclar.</li>
+            <li><strong>Separa en casa:</strong> utiliza contenedores de colores (amarillo para plásticos y metales, azul para papel y cartón, verde para vidrio, marrón para orgánico).</li>
+            <li><strong>Reduce el consumo de plásticos de un solo uso:</strong> opta por botellas reutilizables, bolsas de tela y envases retornables.</li>
+            <li><strong>Recicla aparatos electrónicos:</strong> lleva tus dispositivos viejos a puntos limpios o tiendas que acepten residuos electrónicos.</li>
+            <li><strong>Reutiliza el agua:</strong> instala sistemas de captación de agua de lluvia para riego y limpieza exterior.</li>
+            <li><strong>Apoya marcas sostenibles:</strong> elige productos con certificaciones ecológicas (FSC, EU Ecolabel, Cradle to Cradle).</li>
+            <li><strong>Composta tus residuos orgánicos:</strong> convierte cáscaras, restos de frutas y verduras en abono natural para tus plantas.</li>
+            <li><strong>Repara en lugar de desechar:</strong> da una segunda vida a la ropa, muebles y electrodomésticos.</li>
+            <li><strong>Educa y comparte:</strong> habla con amigos y familiares sobre la importancia de reciclar y cuidar el entorno.</li>
         </ul>
-        <p style="margin-top: 16px; background: #e9f5e9; padding: 12px 20px; border-radius: 40px;">
-            🌍 <strong>Ponte en acción:</strong> cada gesto cuenta. El planeta nos necesita.
+        <p style="margin-top: 20px; background: #e3f0e3; padding: 14px 24px; border-radius: 40px; display: inline-block;">
+            🌎 <strong>“No heredamos la Tierra de nuestros antepasados, la tomamos prestada de nuestros hijos”</strong>
         </p>
     </section>
 
-    <!-- VIDEO & AUDIO en un grid -->
-    <section style="padding-bottom: 20px;">
-        <h2>🎬 Multimedia</h2>
+    <!-- VIDEO y AUDIO (audio oculto) -->
+    <section style="padding-bottom: 24px;">
+        <h2>🎬 Multimedia educativa</h2>
         <div class="media-grid">
             <!-- Video -->
             <div class="media-item" id="video">
-                <h4>▶️ Video “Reciclar es vida”</h4>
+                <h4>▶️ Video “El viaje del reciclaje”</h4>
                 <video controls preload="metadata">
                     <source src="video.mp4" type="video/mp4">
                     Tu navegador no soporta el elemento video. 
                     <p>Descarga el archivo <a href="video.mp4">video.mp4</a></p>
                 </video>
-                <p style="margin-top: 10px; font-size: 0.95rem; color: #2b5e38;">
-                    ⏯️ Haz clic en play para ver el video (archivo: video.mp4)
+                <p style="margin-top: 12px; font-size: 0.95rem; color: #2b5e38;">
+                    ⏯️ Haz clic en play para ver el documental (archivo: video.mp4)
+                </p>
+                <p style="font-size: 0.9rem; color: #3d6b4a; background: #e8f3e8; padding: 6px 14px; border-radius: 30px; margin-top: 6px;">
+                    📽️ Duración aproximada: 4 min · Producción: Planeta Vivo
                 </p>
             </div>
 
-            <!-- Audio -->
+            <!-- Audio oculto (no visible) + placeholder informativo -->
             <div class="media-item" id="audio">
-                <h4>🎧 Audio “Sonidos de la Tierra”</h4>
-                <audio controls preload="metadata">
-                    <source src="audio.mp3" type="audio/mpeg">
-                    Tu navegador no soporta el elemento audio.
-                    <p>Descarga el archivo <a href="audio.mp3">audio.mp3</a></p>
-                </audio>
-                <p style="margin-top: 10px; font-size: 0.95rem; color: #2b5e38;">
-                    🎵 Escucha el mensaje (archivo: audio.mp3)
+                <h4>🎧 Audio “Voces por el planeta”</h4>
+                <!-- El elemento audio está oculto (no se muestra) -->
+                <div class="audio-hidden">
+                    <audio controls preload="metadata">
+                        <source src="audio.mp3" type="audio/mpeg">
+                        Tu navegador no soporta el elemento audio.
+                    </audio>
+                </div>
+                <!-- reemplazo visual: información y descarga -->
+                <div class="audio-placeholder">
+                    <span>🎙️</span>
+                    <div>
+                        <p><strong>Audio disponible</strong> · “Voces por el planeta”</p>
+                        <small>🎵 Archivo: audio.mp3 · 2:30 min</small>
+                    </div>
+                    <a href="audio.mp3" download style="background: #3b9e5a; color: white; padding: 6px 18px; border-radius: 40px; text-decoration: none; font-weight: 500; font-size: 0.9rem;">
+                        ⬇️ Descargar
+                    </a>
+                </div>
+                <p style="margin-top: 14px; font-size: 0.95rem; color: #2b5e38; background: #f0f8f0; padding: 8px 16px; border-radius: 30px;">
+                    🔇 El reproductor de audio está oculto, pero puedes descargar el archivo.
+                </p>
+                <p style="font-size: 0.9rem; color: #3d6b4a;">
+                    Contenido: mensaje inspirador sobre la urgencia de actuar frente al cambio climático.
                 </p>
             </div>
         </div>
@@ -330,14 +401,18 @@
 
     <!-- SECCIÓN: Integrantes -->
     <section id="integrantes">
-        <h2>👥 Integrantes</h2>
+        <h2>👥 Integrantes del proyecto</h2>
         <div class="integrantes-list">
             <span>🌱 Junior Tamayo</span>
             <span>🌿 Nombre Integrante 2</span>
             <span>🍃 Nombre Integrante 3</span>
         </div>
-        <p style="margin-top: 20px; font-style: italic; color: #306b40; background: #eff9ef; padding: 8px 18px; border-radius: 40px; display: inline-block;">
-            ✦ Comprometidos con el medio ambiente ✦
+        <p style="margin-top: 22px; font-style: italic; color: #306b40; background: #eff9ef; padding: 10px 24px; border-radius: 40px; display: inline-block; border: 1px solid #b9dbb9;">
+            ✦ Comprometidos con la educación ambiental y el reciclaje ✦
+        </p>
+        <p style="margin-top: 14px; font-size: 0.98rem;">
+            Este sitio ha sido desarrollado como parte de una iniciativa para promover la conciencia ecológica, 
+            inspirado en los reportajes y la línea editorial de <strong>National Geographic</strong>.
         </p>
     </section>
 
@@ -345,11 +420,14 @@
 
 <!-- Pie de página -->
 <footer>
-    <p style="margin-bottom: 4px;">
+    <p>
         🌎 <strong>Planeta Vivo</strong> · Inspirado en National Geographic 
     </p>
+    <p style="font-size: 0.95rem; opacity: 0.9;">
+        Reciclaje, economía circular y cuidado del medio ambiente · 2026
+    </p>
     <small>
-        Reciclaje y cuidado del medio ambiente · 2026 · Todos los derechos reservados
+        Todos los derechos reservados · Contenido educativo sin fines comerciales
     </small>
 </footer>
 
